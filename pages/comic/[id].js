@@ -5,6 +5,7 @@ import fs, { stat } from "node:fs/promises";
 import Link from "next/link.js";
 import { basename } from "path";
 import Footer from "../components/Footer.js";
+import { Layout } from "../components/Layout.js";
 
 export default function Comic({
   id,
@@ -26,9 +27,7 @@ export default function Comic({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
-
-      <main>
+      <Layout>
         <section className="max-w-lg m-auto">
           <h1 className="font-bold text-center mb-4 text-xl">{title}</h1>
           <div className="max-w-sm m-auto mb-4">
@@ -56,8 +55,7 @@ export default function Comic({
             )}
           </div>
         </section>
-      </main>
-      <Footer />
+      </Layout>
     </>
   );
 }
