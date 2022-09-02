@@ -57,7 +57,6 @@ export async function getStaticProps() {
 
   // esperamos a que se resuelvan todas las promesas con el contenido de cada archivo
   const latestComics = await Promise.all(promisesReadFiles);
-  // console.log(latestComics);
 
   return {
     props: { latestComics },

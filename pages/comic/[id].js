@@ -81,12 +81,16 @@ export async function getStaticPaths() {
   };
 }
 
+/*
+	getStaticProps()
+	- cuando hacemos build nos genera el html estatico de cada pagina
+*/
 export async function getStaticProps({ params }) {
   const { id } = params;
   const FULFILLED = "fulfilled";
 
   // read file content
-  const content = await fs.readFile(`./comics/${id}.json`);
+  const content = await fs.readFile(`./comics/${id}.json`, "utf8");
   const comic = JSON.parse(content);
 
   // navigation
