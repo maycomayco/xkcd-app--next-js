@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 
-export function Header() {
+export default function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
+  // locale is the actual language, and locales is the list of languages availables
+  const { locale, locales } = useRouter();
 
   const getValue = () => searchRef.current?.value;
 
@@ -15,6 +18,9 @@ export function Header() {
         setResults(data.results);
       });
   };
+
+  // determine which language is active
+  const restOfLocales = locales.filter((l) => l !== locale);
 
   return (
     <header className="flex justify-between items-center p-4 max-w-xl m-auto">
@@ -33,6 +39,12 @@ export function Header() {
             </Link>
           </li>
           <li>
+            {/* we use locale prop to deterine which is the correct locale to get an URL */}
+            <Link href={`/`} locale={restOfLocales[0]}>
+              <a className="text-sm font-semibold">{restOfLocales[0]}</a>
+            </Link>
+          </li>
+          <li>
             <input
               ref={searchRef}
               type="text"
@@ -44,7 +56,6 @@ export function Header() {
               {!!results.length && (
                 <div className="absolute left-0 w-full top-1">
                   <ul className="border border-gray-50 shadow-xl rounded-lg bg-white overflow-hidden">
-                    {/* first custom item */}
                     <li className="m-0">
                       <Link href={`/search?q=${getValue()}`}>
                         <a className="text-sm italic text-gray-500 hover:bg-slate-200 block px-2 py-1 text-ellipsis overflow-hidden whitespace-nowrap">

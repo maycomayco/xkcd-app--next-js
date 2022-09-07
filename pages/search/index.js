@@ -3,25 +3,24 @@ import { Layout } from "../components/Layout";
 import { search } from "../../services/search";
 import Link from "next/link";
 import Image from "next/image";
+import { useI18n } from "../../context/i18n";
 
 export default function Search({ query, results }) {
+  const { t } = useI18n();
+
   return (
     <>
       <Head>
-        <title>xkcd - Comics for developers</title>
-        <meta name="description" content="Comics for developers" />
+        <title>{t("seo_default_title")}</title>
+        <meta name="description" content={`Search results for: ${query}`} />
       </Head>
 
       <Layout>
-        <h1>Searching for: {query}</h1>
+        <h1>{t("search_results_title", results.length, query)}</h1>
         <div>
           {results.map((result) => (
-            // <div key={comic.id}>
-            //   <h2>{comic.title}</h2>
-            //   <img src={comic.img} alt={comic.alt} />
-            // </div>
             <Link href={`/comic/${result.id}`} key={result.id}>
-              <a className="block p-4 border-b border-gray-200 flex bg-stone-100 hover:bg-red-100 ">
+              <a className="p-4 border-b border-gray-200 bg-stone-100 hover:bg-red-100 flex">
                 <Image
                   src={result.img}
                   width={50}

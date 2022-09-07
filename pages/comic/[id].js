@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Header } from "../components/Header.js";
 import fs, { stat } from "node:fs/promises";
 import Link from "next/link.js";
 import { basename } from "path";
-import Footer from "../components/Footer.js";
 import { Layout } from "../components/Layout.js";
+import { useI18n } from "../../context/i18n.js";
 
 export default function Comic({
   id,
@@ -19,12 +18,13 @@ export default function Comic({
   prevId,
   nextId,
 }) {
+  const { t } = useI18n();
+
   return (
     <>
       <Head>
-        <title>xkcd - Comics for developers</title>
-        <meta name="description" content="Comics for developers" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>{t("seo_default_title")}</title>
+        <meta name="description" content={t("seo_default_title")} />
       </Head>
 
       <Layout>
@@ -60,17 +60,24 @@ export default function Comic({
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const files = await fs.readdir("./comics");
+  // array for return purposes
+  let paths = [];
 
-  /*
-		basename()
-		- devuelve la ultima porcion de la ruta (el nombre del archivo)
-		- si le pasamos un segundo parametro (extension), se lo quita a la ruta
-	*/
-  const paths = files.map((file) => {
-    const id = basename(file, ".json");
-    return { params: { id } };
+  // locales = ['en', 'es']
+  locales.forEach((locale) => {
+    paths = paths.concat(
+      files.map((file) => {
+        /*
+					basename()
+					- devuelve la ultima porcion de la ruta (el nombre del archivo)
+					- si le pasamos un segundo parametro (extension), se lo quita a la ruta
+				*/
+        const id = basename(file, ".json");
+        return { params: { id }, locale };
+      })
+    );
   });
 
   return {

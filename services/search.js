@@ -6,7 +6,10 @@
 */
 import algoliasearch from "algoliasearch/lite";
 
-const client = algoliasearch("H3ZP9AJ9LK", "3625b89fba88ed6091c531c074a3a23f");
+const APP_ID = process.env.APP_ID;
+const API_KEY = process.env.API_KEY;
+
+const client = algoliasearch(APP_ID, API_KEY);
 const index = client.initIndex("prod_comics");
 
 // we define a dictionary for cache purpose

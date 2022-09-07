@@ -1,35 +1,38 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { Container, Card, Row, Text } from "@nextui-org/react";
-import { Header } from "./components/Header";
 import fs from "fs/promises";
 import Link from "next/link";
-import Footer from "./components/Footer";
 import { Layout } from "./components/Layout";
+import { useI18n } from "../context/i18n";
 
 export default function Home({ latestComics }) {
+  const { t } = useI18n();
+
   return (
     <>
       <Head>
-        <title>xkcd - Comics for developers</title>
-        <meta name="description" content="Comics for developers" />
+        <title>{t("seo_default_title")}</title>
+        <meta name="description" content={t("seo_default_title")} />
       </Head>
       <Layout>
-        <h2 className="text-3xl font-bold text-center mb-10">Latest comics</h2>
+        <h2 className="text-3xl font-bold text-center mb-10">
+          {t("latest_comics")}
+        </h2>
         <section className="grid grid-cols-1 gap-2 max-w-md m-auto sm:grid-cols-2 md:grid-cols-3">
           {latestComics.map((comic) => (
-            <Link href={`/comic/${comic.id}`} key={comic.id}>
-              <a className="mb-4 pb-4 m-auto">
-                <h3 className="font-bold text-center pb-2">{comic.title}</h3>
-                <Image
-                  width={comic.width}
-                  height={comic.height}
-                  src={comic.img}
-                  alt={comic.alt}
-                />
-              </a>
-            </Link>
+            <div key={comic.id}>
+              <Link href={`/comic/${comic.id}`}>
+                <a className="mb-4 pb-4 m-auto">
+                  <h3 className="font-bold text-center pb-2">{comic.title}</h3>
+                  <Image
+                    src={comic.img}
+                    width={comic.width}
+                    height={comic.height}
+                    alt={comic.alt}
+                  />
+                </a>
+              </Link>
+            </div>
           ))}
         </section>
       </Layout>
