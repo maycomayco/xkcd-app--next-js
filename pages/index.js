@@ -47,7 +47,8 @@ export default function Home({ latestComics }) {
 export async function getStaticProps() {
   // leemos los files de la carpeta
   const files = await fs.readdir("./comics");
-  const latestFiles = files.slice(-8, files.length);
+  const latestFiles = files.slice(-12, files.length);
+  console.log(latestFiles);
   const promisesReadFiles = latestFiles.map(async (file) => {
     const content = await fs.readFile(`./comics/${file}`);
     return JSON.parse(content);
