@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import fs from "fs/promises";
 import Link from "next/link";
-import { Layout } from "./components/Layout";
+import Layout from "./components/Layout";
 import { useI18n } from "../context/i18n";
 
 export default function Home({ latestComics }) {

@@ -3,7 +3,7 @@ import { useI18n } from "../../context/i18n";
 import Footer from "./Footer";
 import Header from "./Header";
 
-export function Layout({ children }) {
+export default function Layout({ children }) {
   const { t } = useI18n();
 
   return (

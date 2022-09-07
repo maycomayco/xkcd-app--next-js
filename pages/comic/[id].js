@@ -3,7 +3,7 @@ import Image from "next/image";
 import fs, { stat } from "node:fs/promises";
 import Link from "next/link.js";
 import { basename } from "path";
-import { Layout } from "../components/Layout.js";
+import Layout from "../components/Layout.js";
 import { useI18n } from "../../context/i18n.js";
 
 export default function Comic({

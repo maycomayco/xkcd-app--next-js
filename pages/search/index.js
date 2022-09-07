@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Layout } from "../components/Layout";
+import Layout from "../components/Layout";
 import { search } from "../../services/search";
 import Link from "next/link";
 import Image from "next/image";
