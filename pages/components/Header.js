@@ -23,28 +23,30 @@ export default function Header() {
   const restOfLocales = locales.filter((l) => l !== locale);
 
   return (
-    <header className="flex justify-between items-center p-4 max-w-xl m-auto">
-      <h1 className="font-bold">
+    <header className="flex bg-sky-800 justify-between items-center py-4 px-5 w-screem mb-4">
+      <h1 className="font-bold text-gray-50">
         <Link href="/">
           <a className="transition hover:opacity-80">
             Next<span className="font-light">xkcd</span>
           </a>
         </Link>
       </h1>
-      <nav>
-        <ul className="flex flex-row gap-2">
-          <li>
+      <nav className="flex items-center">
+        <ul className="flex gap-2 justify-around items-center">
+          <li className="mb-0">
             <Link href="/">
-              <a className="text-sm font-semibold">Home</a>
+              <a className="text-sm font-semibold text-gray-50">Home</a>
             </Link>
           </li>
-          <li>
+          <li className="mb-0">
             {/* we use locale prop to deterine which is the correct locale to get an URL */}
             <Link href={`/`} locale={restOfLocales[0]}>
-              <a className="text-sm font-semibold">{restOfLocales[0]}</a>
+              <a className="text-sm font-semibold text-gray-50">
+                {restOfLocales[0]}
+              </a>
             </Link>
           </li>
-          <li>
+          <li className="mb-0">
             <input
               ref={searchRef}
               type="text"
