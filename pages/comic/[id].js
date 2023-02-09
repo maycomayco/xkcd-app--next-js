@@ -3,6 +3,7 @@ import Image from "next/image";
 import fs, { stat } from "node:fs/promises";
 import Link from "next/link.js";
 import Layout from "../components/Layout.js";
+import { basename } from "path";
 
 export default function Comic({
   id,
@@ -54,6 +55,22 @@ export default function Comic({
       </Layout>
     </>
   );
+}
+
+export async function getStaticPaths({ locales }) {
+  const files = await fs.readdir("./comics");
+
+  // generate an array with all the paths
+  const allPaths = files.map((file) => {
+    // basename() -> devuelve la ultima porcion de la ruta (el nombre del archivo junto con su estension)
+    const id = basename(file, ".json");
+    return { params: { id } };
+  });
+
+  return {
+    paths: allPaths,
+    fallback: false,
+  };
 }
 
 /*
