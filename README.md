@@ -1,6 +1,6 @@
 # xkcd Next.js
 
-A modern and accelerated clone of the [xkcd.com](https://xkcd.com) site developed with [Next.js](https://nextjs.org/). This project focuses on performance and accessibility, allowing you to enjoy your favorite xkcd comics quickly and easily. This frontend application is complemented by a backend that provides comic data. In the future, this will be consumed from a yet-to-be-defined database.
+A modern and accelerated clone of the [xkcd.com](https://xkcd.com) site developed with [Next.js](https://nextjs.org/). This project focuses on performance and accessibility, allowing you to enjoy your favorite xkcd comics quickly and easily. This frontend application is complemented by a backend, [xkcd-scraper](https://github.com/maycomayco/xkcd-scraper), that provides comic data. In the future, this will be consumed from a yet-to-be-defined database.
 
 ## Features
 
