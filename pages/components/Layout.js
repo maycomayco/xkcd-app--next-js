@@ -10,7 +10,7 @@ export default function Layout({ children }) {
         <meta name="description" content="xkcd - Comics para desarrolladores" />
       </Head>
       <Header />
-      <main className="m-auto max-w-xl">{children}</main>
+      <main className="mx-auto container pt-8 min-h-full">{children}</main>
       <Footer />
     </>
   );
