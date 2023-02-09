@@ -34,6 +34,7 @@ export default function Comic({
               width={width}
               height={height}
               alt={alt}
+              priority
             />
           </div>
           <p>{alt}</p>
