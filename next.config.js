@@ -5,11 +5,6 @@ const nextConfig = {
   images: {
     domains: ["imgs.xkcd.com"],
   },
-  i18n: {
-    locales: ["en", "es"],
-    // /comic/1234 -> /es/comic/1234
-    defaultLocale: "en", // This is the default locale you want to be used when visiting
-  },
 };
 
 module.exports = nextConfig;
