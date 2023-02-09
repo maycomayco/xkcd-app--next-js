@@ -1,12 +1,9 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
 
 export default function Header() {
   const [results, setResults] = useState([]);
   const searchRef = useRef();
-  // locale is the actual language, and locales is the list of languages availables
-  const { locale, locales } = useRouter();
 
   const getValue = () => searchRef.current?.value;
 
@@ -18,9 +15,6 @@ export default function Header() {
         setResults(data.results);
       });
   };
-
-  // determine which language is active
-  const restOfLocales = locales.filter((l) => l !== locale);
 
   return (
     <header className="flex bg-sky-800 justify-between items-center py-4 px-5 w-screem mb-4">
@@ -36,14 +30,6 @@ export default function Header() {
           <li className="mb-0">
             <Link href="/">
               <a className="text-sm font-semibold text-gray-50">Home</a>
-            </Link>
-          </li>
-          <li className="mb-0">
-            {/* we use locale prop to deterine which is the correct locale to get an URL */}
-            <Link href={`/`} locale={restOfLocales[0]}>
-              <a className="text-sm font-semibold text-gray-50">
-                {restOfLocales[0]}
-              </a>
             </Link>
           </li>
           <li className="mb-0">

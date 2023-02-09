@@ -3,21 +3,16 @@ import Image from "next/image";
 import fs from "fs/promises";
 import Link from "next/link";
 import Layout from "./components/Layout";
-import { useI18n } from "../context/i18n";
 
 export default function Home({ latestComics }) {
-  const { t } = useI18n();
-
   return (
     <>
       <Head>
-        <title>{t("seo_default_title")}</title>
-        <meta name="description" content={t("seo_default_title")} />
+        <title>xkcd - Comics for developers</title>
+        <meta name="description" content="xkcd - Comics for developers" />
       </Head>
       <Layout>
-        <h2 className="text-3xl font-bold text-center mb-10">
-          {t("latest_comics")}
-        </h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Latest Comics</h2>
         <section className="grid grid-cols-1 gap-2 max-w-md m-auto sm:grid-cols-2 md:grid-cols-3">
           {latestComics.map((comic) => (
             <div key={comic.id}>
@@ -27,7 +22,9 @@ export default function Home({ latestComics }) {
                   <Image
                     src={comic.img}
                     width={comic.width}
+                    // width={200}
                     height={comic.height}
+                    // height={200}
                     alt={comic.alt}
                   />
                 </a>
