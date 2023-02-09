@@ -17,21 +17,16 @@ export default function Header() {
   };
 
   return (
-    <header className="flex bg-sky-800 justify-between items-center py-4 px-5 w-screem mb-4">
+    <header className="flex bg-stone-800 justify-center items-center py-4 px-5 w-screen sm:justify-between">
       <h1 className="font-bold text-gray-50">
         <Link href="/">
-          <a className="transition hover:opacity-80">
-            Next<span className="font-light">xkcd</span>
+          <a className="transition hover:opacity-80 text-2xl">
+            xkcd <span className="font-light">Next.js</span>
           </a>
         </Link>
       </h1>
-      <nav className="flex items-center">
+      <nav className="hidden sm:flex items-center">
         <ul className="flex gap-2 justify-around items-center">
-          <li className="mb-0">
-            <Link href="/">
-              <a className="text-sm font-semibold text-gray-50">Home</a>
-            </Link>
-          </li>
           <li className="mb-0">
             <input
               ref={searchRef}
