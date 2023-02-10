@@ -34,6 +34,7 @@ jobs:
         run: rm -rf repo
       - name: Commit and push changes
         run: |
+          git remote set-url origin "https://${TOKEN}@github.com/maycomayco/xkcd-app--next-js.git"
           git add -A
           git commit -m "[bot] Update files from $REPO" || echo "No changes to commit"
-          git push
+          git push -u origin main
