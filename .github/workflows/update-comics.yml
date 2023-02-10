@@ -35,7 +35,9 @@ jobs:
         run: |
           REPO_URL="https://${TOKEN}@github.com/${REPO}.git"
           git clone --depth=1 --branch ${BRANCH} ${REPO_URL} repo
-          cp repo/${FOLDER} ./${FOLDER}/
+          cd repo/comics
+          cp -r ./* ../../${FOLDER}/
+          # cp repo/${FOLDER} ./${FOLDER}/
       - name: Clean up
         run: rm -rf repo
       - name: Commit and push changes
