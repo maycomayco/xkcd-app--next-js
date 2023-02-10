@@ -9,6 +9,7 @@ env:
   REPO: maycomayco/xkcd-scraper
   BRANCH: master
   FOLDER: comics
+  TOKEN: ${{ secrets.TOKEN_FOR_GITHUB }}
 
 jobs:
   checkout-files:
@@ -26,7 +27,7 @@ jobs:
           git config --global user.name "xkcd-bot"
       - name: Checkout files from another repository
         run: |
-          REPO_URL="https://github.com/${REPO}.git"
+          REPO_URL="https://${TOKEN}@github.com/${REPO}.git"
           git clone --depth=1 --branch ${BRANCH} ${REPO_URL} repo
           cp -r repo/${FOLDER} ./
       - name: Commit and push changes
