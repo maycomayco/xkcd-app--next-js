@@ -9,7 +9,7 @@ env:
   REPO: maycomayco/xkcd-scraper
   BRANCH: master
   FOLDER: comics
-  TOKEN: ${{ secrets.TOKEN_FOR_GITHUB }}
+  TOKEN: ${{ secrets.TOKEN_FOR_GITHUB2 }}
 
 jobs:
   checkout-files:
