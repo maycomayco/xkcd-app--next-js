@@ -15,6 +15,10 @@ jobs:
   checkout-files:
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Set Node.js 18.12.1
         uses: actions/setup-node@v3
         with:
