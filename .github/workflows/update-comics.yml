@@ -3,7 +3,7 @@ name: Update comics
 on:
   schedule:
     - cron: "0 1 * * *"
-   workflow_dispatch:
+  workflow_dispatch:
 
 env:
   REPO: maycomayco/xkcd-scraper
