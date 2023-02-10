@@ -14,12 +14,16 @@ jobs:
   checkout-files:
     runs-on: ubuntu-latest
     steps:
+     - name: Set Node.js 18.12.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.1
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Configure Git
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+          git config --global user.email "bot@xkcd.com"
+          git config --global user.name "xkcd-bot"
       - name: Checkout files from another repository
         run: |
           REPO_URL="https://github.com/${REPO}.git"
@@ -28,5 +32,5 @@ jobs:
       - name: Commit and push changes
         run: |
           git add -A
-          git commit -m "Update files from $REPO" || echo "No changes to commit"
+          git commit -m "[bot] Update files from $REPO" || echo "No changes to commit"
           git push
