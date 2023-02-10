@@ -35,12 +35,13 @@ jobs:
         run: |
           REPO_URL="https://${TOKEN}@github.com/${REPO}.git"
           git clone --depth=1 --branch ${BRANCH} ${REPO_URL} repo
-          cp -r repo/${FOLDER} ./${FOLDER}/
+          sh 'ls -la'
+          # cd comics
+          # cp -r repo/${FOLDER} ./${FOLDER}/
       - name: Clean up
         run: rm -rf repo
       - name: Commit and push changes
         run: |
-          # git remote set-url origin "https://${TOKEN}@github.com/maycomayco/xkcd-app--next-js.git"
           git add -A
           git commit -m "[bot] Update files from $REPO" || echo "No changes to commit"
           git push -u origin main
