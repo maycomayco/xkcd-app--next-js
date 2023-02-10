@@ -1,0 +1,32 @@
+name: Update comics
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+   workflow_dispatch:
+
+env:
+  REPO: maycomayco/xkcd-scraper
+  BRANCH: master
+  FOLDER: comics
+
+jobs:
+  checkout-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Configure Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: Checkout files from another repository
+        run: |
+          REPO_URL="https://github.com/${REPO}.git"
+          git clone --depth=1 --branch ${BRANCH} ${REPO_URL} repo
+          cp -r repo/${FOLDER} ./
+      - name: Commit and push changes
+        run: |
+          git add -A
+          git commit -m "Update files from $REPO" || echo "No changes to commit"
+          git push
